@@ -1,0 +1,25 @@
+extends ../layout.pug 
+block content
+    div(class="w3-margin-top")
+        table.w3-table-all
+            thead
+                tr.w3-red
+                    th Nombre
+                    th Apellido
+                    th Email
+                    th Telefono
+                    th Puesto
+                    th Modificar
+                    th Eliminar
+                tbody
+                    each aso in asociados
+                        tr
+                            td= aso.nombre
+                            td= aso.apellido
+                            td= aso.email
+                            td= aso.telefono
+                            td= aso.puesto
+                            td
+                                a(href="/asociados/modificar/" + aso._id) Modificar
+                            td
+                                a(href="/asociados/eliminar/" + aso._id) Eliminar

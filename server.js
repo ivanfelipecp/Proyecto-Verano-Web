@@ -35,13 +35,26 @@ var Asociado = mongoose.model("asociado",
     }
 );
 
-app.get("/", function(req,res){
-    Asociado.find({}, function(err, docs){
-        res.render("asociados/index",{asociados:docs});
+// ### Transacciones de asociados ###
+
+// + Crear
+// get
+app.get("/asociados/crear", function(req,res){
+    res.render("asociados/crear");
+});
+
+// post
+app.post("/asociados/crear", function(req,res){
+    Asociado.create(req.body, function(err,doc){
+        if(err){
+            console.log(err);
+        }
+        res.redirect("/");
     })
 });
 
-// Modificar
+// + Modificar
+// get
 app.get("/asociados/modificar/:id",function(req,res){
     //console.log(req.body);
     Asociado.findById(req.params.id, function(err,doc){
@@ -49,6 +62,7 @@ app.get("/asociados/modificar/:id",function(req,res){
     })
 });
 
+// post
 app.post("/asociados/modificar/:id", function(req,res){
     console.log(req.body);
     Asociado.findByIdAndUpdate(req.params.id, req.body ,function(err, doc){
@@ -59,12 +73,20 @@ app.post("/asociados/modificar/:id", function(req,res){
     });
 });
 
+// Eliminar
+// solo el get, ya que se hace directo por parametro
 app.get("/asociados/eliminar/:id",function(req,res){
     Asociado.findByIdAndRemove(req.params.id, function(err, doc){
         res.redirect("/");
     });
 });
 
+// Get principal
+app.get("/", function(req,res){
+    Asociado.find({}, function(err, docs){
+        res.render("asociados/index",{asociados:docs});
+    })
+});
 
 app.listen(port, function(){
     console.log("*** SERVER RUNNING ON PORT -> " + port);

@@ -1,21 +1,22 @@
 extends ../layout.pug 
 block content
-    form.w3-container(method="post" action="/asociados/modificar/"+asociado.id)
-        p
-            input.w3-input(name="nombre" type='text' value=asociado.nombre)
-            label Nombre
-        p
-            input.w3-input(name="apellido" type='text' value=asociado.apellido)
-            label Apellido
-        p
-            input.w3-input(name="email" type='text' value=asociado.email)
-            label Email
-        p
-            input.w3-input(name="telefono" type='number' value=asociado.telefono)
-            label Telefono
-        
-        input.w3-input(name="puesto" type='text' hidden="" value=asociado.puesto)
+    div(class="w3-display-middle")
+        h1 Modificar Asociado
+        form(method="post", action="/asociados/modificar/"+asociado.id, class="")
+            p
+                label Nombre
+                input(name="nombre", type='text', class="w3-input", value=asociado.nombre)
+            p
+                label Apellido
+                input(name="apellido", type='text', class="w3-input", value=asociado.apellido)
+            p
+                label Email
+                input(name="email", type='text', class="w3-input", value=asociado.email)
+            p
+                label Telefono
+                input(name="telefono", type='number', class="w3-input", value=asociado.telefono)
+            
+            input(name="puesto", type='hidden', class="w3-input", value=asociado.puesto)
 
-        p
-            input.w3-input(type='submit' class="w3-button w3-red" value="Modificar")
-        
+            p
+                input(type='submit', class="w3-button w3-red ", value="Modificar")

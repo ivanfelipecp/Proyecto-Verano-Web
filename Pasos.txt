@@ -1,0 +1,42 @@
+﻿####################################################
+#                    MongoDB                       #
+####################################################
+
+Vamos a necesitar 2 terminales de mongo, uno para la DB y otro para consultar los datos:
+
+* Terminal con la base de datos:
+  mongod
+
+* Terminal para consultar la base de datos:
+  mongos
+
+  - Comandos:
+    + Para usar una base de datos específica -> use [DBName]:
+      use destinosDB
+
+    + Para ver la colecciónes de una BD
+      show collections
+
+    + Para ver todos los datos de una colección  -> db.[collection].find():
+      db.destinos.find()
+    + Para verla pretty gud -> db.[collection].find().pretty():
+      db.destinos.find().pretty()
+
+* Importar Datos de prueba
+  mongoimport --jsonArray --db destinosDB --collection destinos --file datos.json
+
+
+####################################################
+#                    NodeJS                        #
+####################################################
+
+* Nos ubicamos en la dirección del proyecto en un terminal:
+  cd [Path]
+
+* Instalamos los siguientes módulos de Node que vamos a usar en el proyecto -> npm install --save [package]:
+  npm install --save express
+  npm install --save body-parser
+  npm install --save method-override
+  npm install --save mongoose
+* Para correr el app:
+  node server.js

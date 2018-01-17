@@ -1,0 +1,23 @@
+extends ../layout.pug 
+block content
+    div(class="w3-display-middle")
+        h1 Crear Asociado
+        form(method="post", action="/asociados/crear/")
+            p
+                label Nombre
+                input(name="nombre", type='text', class="w3-input")
+            p
+                label Apellido
+                input(name="apellido", type='text', class="w3-input")
+            p
+                label Email
+                input(name="email", type='text', class="w3-input")
+            p
+                label Telefono
+                input(name="telefono", type='number', class="w3-input")
+            p
+                select(class="w3-select" name='puesto')
+                    option(selected='', value='chofer') Chofer
+                    option(value='guia') Guía
+            p
+                input(type='submit', class="w3-button w3-red ", value="Crear")

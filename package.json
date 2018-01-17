@@ -1,0 +1,27 @@
+{
+  "name": "proyecto-verano-web",
+  "version": "1.0.0",
+  "description": "Proyecto de verano web",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivanfelipecp/Proyecto-Verano-Web.git"
+  },
+  "author": "Ivan, Fauricio & R4RuT0",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivanfelipecp/Proyecto-Verano-Web/issues"
+  },
+  "homepage": "https://github.com/ivanfelipecp/Proyecto-Verano-Web#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "method-override": "^2.3.10",
+    "mongoose": "^4.13.9",
+    "pug": "^2.0.0-rc.4"
+  }
+}

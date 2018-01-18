@@ -1,0 +1,25 @@
+extends ../layout.pug
+block content
+    div(class="w3-margin-top w3-content")
+        h1 microbuses
+        table(class="w3-table-all w3-centered")
+            thead
+                tr(class="w3-red")
+                    th Chofer
+                    th Estado Mecanico
+                    th servicios
+                    th Modificar
+                    th Eliminar
+                tbody
+                    each m in microbuses
+                        tr
+                            td= m.chofer
+                            td= m.estadoMecanico
+                            td
+                              ul
+                                each s in m.servicios
+                                  li= s
+                            td
+                                a(href="/microbuses/modificar/" + m._id) Modificar
+                            td
+                                a(href="/microbuses/eliminar/" + m._id) Eliminar 

@@ -14,6 +14,10 @@ var mongoose = require("mongoose");
 var app = express();
 var port = 8000;
 
+var parseo = function(lista) {
+    return lista.split(',');
+}
+
 // Configuraciones
 app.set("view engine","pug");
 app.use(express.static(__dirname + "/public"));
@@ -32,6 +36,14 @@ var Asociado = mongoose.model("asociado",
         email: String,
         telefono: Number,
         puesto: String
+    }
+);
+
+var Microbus = mongoose.model("Microbus",
+    {
+        propietario: mongoose.Schema.Types.ObjectId,
+        estadoMecanico: String,
+        servicios: Array
     }
 );
 
@@ -82,9 +94,72 @@ app.get("/asociados/eliminar/:id",function(req,res){
 });
 
 // Get principal
-app.get("/", function(req,res){
+app.get("/asociados", function(req,res){
     Asociado.find({}, function(err, docs){
         res.render("asociados/index",{asociados:docs});
+    })
+});
+
+// ### Transacciones de microbuses ###
+
+// + Crear
+// get
+app.get("/microbuses/crear", function(req,res){
+    Asociado.find({puesto:"chofer"},function(err,docs) {
+        res.render("microbuses/crear",{choferes:docs});
+    })
+});
+
+// post
+app.post("/microbuses/crear", function(req,res){
+    req.body.servicios = parseo(req.body.servicios);
+    Microbus.create(req.body, function(err,doc){
+      if(err){
+          console.log(err);
+      }
+      res.redirect("/microbuses");
+  })
+});
+/*
+// + Modificar
+// get
+app.get("/asociados/modificar/:id",function(req,res){
+    //console.log(req.body);
+    Asociado.findById(req.params.id, function(err,doc){
+        res.render("asociados/modificar",{asociado:doc});
+    })
+});
+
+// post
+app.post("/asociados/modificar/:id", function(req,res){
+    console.log(req.body);
+    Asociado.findByIdAndUpdate(req.params.id, req.body ,function(err, doc){
+        if(err){
+            console.log(err);
+        }
+        res.redirect("/");
+    });
+});
+*/
+// Eliminar
+// solo el get, ya que se hace directo por parametro
+app.get("/microbuses/eliminar/:id",function(req,res){
+    Microbus.findByIdAndRemove(req.params.id, function(err, doc){
+        res.redirect("/microbuses");
+    });
+});
+
+// Get principal
+app.get("/microbuses", function(req,res){
+    Microbus.find({}, function(err, docs){
+        docs.forEach(function(doc) {
+            Asociado.findById(doc.propietario,function(err,d) {
+                docs["chofer"]=d.nombre;
+                console.log(doc);
+            })
+            //docs.chofer="lol";
+        })
+        res.render("microbuses/index",{microbuses:docs});
     })
 });
 

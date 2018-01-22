@@ -16,7 +16,7 @@ var port = 8000;
 
 var parseo = function(lista) {
     return lista.split(',');
-}
+};
 
 // Configuraciones
 app.set("view engine","pug");
@@ -47,6 +47,10 @@ var Microbus = mongoose.model("Microbus",
     }
 );
 
+
+app.get("/admin", function(req,res){
+    res.render("admin");
+});
 
 // ### Transacciones de asociados ###
 
@@ -159,7 +163,7 @@ app.get("/microbuses", function(req,res){
                 console.log(doc);
             })
             //docs.chofer="lol";
-        })
+        });
         res.render("microbuses/index",{microbuses:docs});
     })
 });

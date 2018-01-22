@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 
 // Conexión a la BD
-mongoose.connect('mongodb://localhost:27017/proyectoDB');
+mongoose.connect('mongodb://heroku_45wgrpkj:cs3i3n46i4epjm2hi968q09678@ds111618.mlab.com:11618/heroku_45wgrpkj');//mongodb://localhost:27017/proyectoDB');
 
 var Asociado = mongoose.model("asociado",
     {

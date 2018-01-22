@@ -47,6 +47,7 @@ var Microbus = mongoose.model("Microbus",
     }
 );
 
+
 // ### Transacciones de asociados ###
 
 // + Crear

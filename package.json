@@ -19,9 +19,11 @@
   "homepage": "https://github.com/ivanfelipecp/Proyecto-Verano-Web#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cloudinary": "^1.9.1",
     "express": "^4.16.2",
     "method-override": "^2.3.10",
     "mongoose": "^4.13.9",
+    "multer": "^1.3.0",
     "pug": "^2.0.0-rc.4"
   }
 }

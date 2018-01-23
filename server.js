@@ -58,6 +58,16 @@ app.get("/microbuses/eliminar/:id", microbuses.getEliminar);
 // Get principal
 app.get("/microbuses", microbuses.getPrincipal);
 
+// ### Transacciones de microbuses ###
+// + Get principal
+app.get("/excursiones", excursiones.getPrincipal);
+// + Crear
+// get
+app.get("/excursiones/crear", excursiones.getCrear);
+// post
+app.post("/excursiones/crear",excursiones.postCrear);
+
+
 app.listen(port, function(){
     console.log("*** SERVER RUNNING ON PORT -> " + port);
 });

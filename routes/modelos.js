@@ -19,10 +19,11 @@ exports.Microbus = mongoose.model("microbus",
     }
 );
 
-//falta valor destino
+
 exports.Excursion = mongoose.model("excursion",
     {
-        guia:{"type":mongoose.Schema.Types.ObjectId,ref:"asociado"},        
+        guia:{"type":mongoose.Schema.Types.ObjectId,ref:"asociado"},  
+        destino:{"type":mongoose.Schema.Types.ObjectId,ref:"destino"},         
         cantMaxPersonas: Number,
         microbuses: [{"type":mongoose.Schema.Types.ObjectId,ref:"microbus"}],
         fechaHoraSalida: Date,
@@ -33,13 +34,14 @@ exports.Excursion = mongoose.model("excursion",
     }
 );
 
-//Falta el valor destino 
-exporsts.Reservaciones = mongoose.model("reservacion",
+
+exports.Reservaciones = mongoose.model("reservacion",
     {
         excursion: {"type":mongoose.Schema.Types.ObjectId,ref:"excursion"},   
         tipoTurista: String,
-        monto: Float,
-	    saldo: Float,   
+        monto: Number,
+        saldo: Number, 
+        depositos: Array,  
 	    estado: String,	    
 	    fechaMaxPago: Date
     }
@@ -49,6 +51,13 @@ exports.Destinos = mongoose.model("destino",
     {
         nombre:String,
         provincia: String,
+        fotos:Array
+    }
+);
+
+exports.Depositos = mongoose.model("deposito",
+    {
+        montoAbonado:Number,
         fotos:Array
     }
 );

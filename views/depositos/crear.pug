@@ -1,0 +1,13 @@
+extends ../layout.pug
+block content
+    div(class="w3-display-middle")
+        h1 Crear destino
+        form(method="post", action="/depositos/crear/", enctype="multipart/form-data")
+            p
+                label Monto abonado
+                input(name="montoAbonado", type='number', class="w3-input")
+            p            
+                label Agregar imágenes
+                input(name="fotos", type='file', class="w3-input",  multiple="multiple")
+            p
+                input(type='submit', class="w3-button w3-red ", value="Crear")

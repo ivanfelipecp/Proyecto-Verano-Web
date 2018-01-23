@@ -3,6 +3,13 @@ block content
     div(class="w3-display-large")        
         h1 Crear Excursiones
         form(method="post", action="/excursiones/crear/")
+            p   
+                label Destino
+                select(id="selectDestino" class="w3-select" name="selectDestino")
+                    each d in destinos
+                        option(value=d._id)= d.nombre+" ("+d.provincia+")"
+                input(type="button", id="agregaDestino", class="w3-button w3-blue ", value="Agregar Destino")
+                input(id="destino", name="destino", type='hidden')              
             p
                 label Guia
                 select(class="w3-select" name='guia')
@@ -13,8 +20,7 @@ block content
                 select(id="selectMicrobus" class="w3-select" name='microbuses')
                   each c in microbuses
                     if c.propietario.puesto= "chofer"
-                      option(value=c._id)= c.propietario.nombre
-                     
+                      option(value=c._id)= c.propietario.nombre                     
                 input(type="button", id="agregaMicrobus", class="w3-button w3-blue ", value="Agregar Microbus")
                 input(id="listaMicrobus", name="listaMicrobus", type='hidden')                      
             p

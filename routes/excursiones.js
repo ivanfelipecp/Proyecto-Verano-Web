@@ -3,7 +3,7 @@ var utils = require("./utils");
 // ### Transacciones de excursiones ###
 // Get principal
 exports.getPrincipal= function(req,res){
-    modelos.Excursion.find({}).populate("guia").populate("microbuses.microbus").exec(function(err,docs){
+    modelos.Excursion.find({}).populate("guia").populate("destino").populate("microbuses.microbus").exec(function(err,docs){
         console.log(docs);
         res.render("excursiones/index",{excursiones:docs});
     });
@@ -16,7 +16,9 @@ exports.getCrear= function(req,res){
     modelos.Asociado.find({puesto:"chofer"},function(err,choferes) {
       modelos.Asociado.find({puesto:"guia"},function(err,guias) {
         modelos.Microbus.find({}).populate("propietario").exec(function(err,docs) {
-            res.render("excursiones/crear",{choferes:choferes,guias:guias,microbuses:docs});
+            modelos.Destinos.find({},function(err,destinos){
+                res.render("excursiones/crear",{choferes:choferes,guias:guias,microbuses:docs,destinos:destinos});
+            })            
         })
       })
     })
@@ -27,6 +29,7 @@ exports.postCrear= function(req,res){
     var data={};
     data.guia= req.body.guia;
     data.chofer= req.body.chofer;
+    data.destino= req.body.destino;
     data.cantMaxPersonas= req.body.cantMaxPersonas;
     data.fechaHoraSalida= req.body.fechaSalida;
     data.fechaHoraVuelta= req.body.fechaEntrada;

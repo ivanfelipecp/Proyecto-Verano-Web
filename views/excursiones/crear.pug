@@ -9,11 +9,6 @@ block content
                   each c in guias
                       option(value=c._id)= c.nombre
             p
-                label Chofer
-                select(class="w3-select" name='chofer')
-                  each c in choferes
-                      option(value=c._id)= c.nombre
-            p
                 label Microbus(es)
                 select(id="selectMicrobus" class="w3-select" name='microbuses')
                   each c in microbuses
@@ -24,7 +19,7 @@ block content
                 input(id="listaMicrobus", name="listaMicrobus", type='hidden')                      
             p
                 label Capacidad Maxima
-                input(name="capacidad", type='number', class="w3-input")
+                input(name="cantMaxPersonas", type='number', class="w3-input")
             p
                 label Fecha/hora salida
                 input(type='datetime-local', name='fechaSalida', class="w3-input")

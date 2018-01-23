@@ -56,6 +56,7 @@ app.get("/microbuses", microbuses.getPrincipal);
 app.get("/excursiones", excursiones.getPrincipal);
 app.get("/excursiones/crear", excursiones.getCrear);
 app.post("/excursiones/crear",excursiones.postCrear);
+app.get("/excursiones/eliminar/:id", excursiones.getEliminar);
 
 
 // ### Destinos ###

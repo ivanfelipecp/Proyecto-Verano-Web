@@ -45,13 +45,13 @@ app.get("/asociados/eliminar/:id",asociados.getEliminar);
 // Get principal
 app.get("/asociados",asociados.getPrincipal);
 
-
 // ### Transacciones de microbuses ###
 // + Crear
 // get
 app.get("/microbuses/crear", microbuses.getCrear);
 // post
 app.post("/microbuses/crear", microbuses.postCrear);
+
 // Eliminar
 // solo el get, ya que se hace directo por parametro
 app.get("/microbuses/eliminar/:id", microbuses.getEliminar);

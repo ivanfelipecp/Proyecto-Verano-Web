@@ -65,6 +65,11 @@ app.get("/excursiones/crear", excursiones.getCrear);
 app.post("/excursiones/crear",excursiones.postCrear);
 app.get("/excursiones/eliminar/:id", excursiones.getEliminar);
 
+// ### reservaciones ###
+app.get("/reservaciones", reservaciones.getPrincipal);
+app.get("/reservaciones/crear", reservaciones.getCrear);
+app.post("/reservaciones/crear",reservaciones.postCrear);
+app.get("/reservaciones/eliminar/:id", reservaciones.getEliminar);
 
 // ### Destinos ###
 app.get("/destinos", destinos.getPrincipal);

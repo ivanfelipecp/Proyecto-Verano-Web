@@ -13,10 +13,16 @@ var mongoose = require("mongoose");
 // Variable que tiene el servidor
 var app = express();
 var port = 8000;
+<<<<<<< HEAD
 
 var parseo = function(lista) {
     return lista.split(',');
 };
+=======
+var asociados = require("./routes/asociados");
+var microbuses = require("./routes/microbuses");
+var excursiones = require("./routes/excursiones");
+>>>>>>> 3e934b5610940963cd61179d64451c3adabbb754
 
 // Configuraciones
 app.set("view engine","pug");
@@ -29,6 +35,7 @@ app.use(methodOverride("_method"));
 // Conexión a la BD
 mongoose.connect('mongodb://heroku_45wgrpkj:cs3i3n46i4epjm2hi968q09678@ds111618.mlab.com:11618/heroku_45wgrpkj');//mongodb://localhost:27017/proyectoDB');
 
+<<<<<<< HEAD
 var Asociado = mongoose.model("asociado",
     {
         nombre: String,
@@ -52,109 +59,37 @@ app.get("/admin", function(req,res){
     res.render("admin");
 });
 
+=======
+>>>>>>> 3e934b5610940963cd61179d64451c3adabbb754
 // ### Transacciones de asociados ###
-
 // + Crear
 // get
-app.get("/asociados/crear", function(req,res){
-    res.render("asociados/crear");
-});
-
+app.get("/asociados/crear", asociados.getCrear);
 // post
-app.post("/asociados/crear", function(req,res){
-    Asociado.create(req.body, function(err,doc){
-        if(err){
-            console.log(err);
-        }
-        res.redirect("/");
-    })
-});
-
+app.post("/asociados/crear",asociados.postCrear);
 // + Modificar
 // get
-app.get("/asociados/modificar/:id",function(req,res){
-    //console.log(req.body);
-    Asociado.findById(req.params.id, function(err,doc){
-        res.render("asociados/modificar",{asociado:doc});
-    })
-});
-
+app.get("/asociados/modificar/:id",asociados.getModificar);
 // post
-app.post("/asociados/modificar/:id", function(req,res){
-    console.log(req.body);
-    Asociado.findByIdAndUpdate(req.params.id, req.body ,function(err, doc){
-        if(err){
-            console.log(err);
-        }
-        res.redirect("/");
-    });
-});
-
+app.post("/asociados/modificar/:id",asociados.postModificar);
 // Eliminar
 // solo el get, ya que se hace directo por parametro
-app.get("/asociados/eliminar/:id",function(req,res){
-    Asociado.findByIdAndRemove(req.params.id, function(err, doc){
-        res.redirect("/");
-    });
-});
-
+app.get("/asociados/eliminar/:id",asociados.getEliminar);
 // Get principal
-app.get("/asociados", function(req,res){
-    Asociado.find({}, function(err, docs){
-        res.render("asociados/index",{asociados:docs});
-    })
-});
+app.get("/asociados",asociados.getPrincipal);
 
 // ### Transacciones de microbuses ###
-
 // + Crear
 // get
-app.get("/microbuses/crear", function(req,res){
-    Asociado.find({puesto:"chofer"},function(err,docs) {
-        res.render("microbuses/crear",{choferes:docs});
-    })
-});
-
+app.get("/microbuses/crear", microbuses.getCrear);
 // post
-app.post("/microbuses/crear", function(req,res){
-    req.body.servicios = parseo(req.body.servicios);
-    Microbus.create(req.body, function(err,doc){
-      if(err){
-          console.log(err);
-      }
-      res.redirect("/microbuses");
-  })
-});
-/*
-// + Modificar
-// get
-app.get("/asociados/modificar/:id",function(req,res){
-    //console.log(req.body);
-    Asociado.findById(req.params.id, function(err,doc){
-        res.render("asociados/modificar",{asociado:doc});
-    })
-});
+app.post("/microbuses/crear", microbuses.postCrear);
 
-// post
-app.post("/asociados/modificar/:id", function(req,res){
-    console.log(req.body);
-    Asociado.findByIdAndUpdate(req.params.id, req.body ,function(err, doc){
-        if(err){
-            console.log(err);
-        }
-        res.redirect("/");
-    });
-});
-*/
 // Eliminar
 // solo el get, ya que se hace directo por parametro
-app.get("/microbuses/eliminar/:id",function(req,res){
-    Microbus.findByIdAndRemove(req.params.id, function(err, doc){
-        res.redirect("/microbuses");
-    });
-});
-
+app.get("/microbuses/eliminar/:id", microbuses.getEliminar);
 // Get principal
+<<<<<<< HEAD
 app.get("/microbuses", function(req,res){
     Microbus.find({}, function(err, docs){
         docs.forEach(function(doc) {
@@ -167,6 +102,9 @@ app.get("/microbuses", function(req,res){
         res.render("microbuses/index",{microbuses:docs});
     })
 });
+=======
+app.get("/microbuses", microbuses.getPrincipal);
+>>>>>>> 3e934b5610940963cd61179d64451c3adabbb754
 
 app.listen(port, function(){
     console.log("*** SERVER RUNNING ON PORT -> " + port);

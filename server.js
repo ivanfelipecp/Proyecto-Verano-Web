@@ -92,6 +92,3 @@ app.get("/", function (req, res) {
     res.render("destinos-clientes/index");
 });
 
-app.listen(port, function(){
-    console.log("*** SERVER RUNNING ON PORT -> " + port);
-});

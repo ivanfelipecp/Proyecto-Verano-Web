@@ -5,7 +5,7 @@ var utils = require("./utils");
 exports.getPrincipal= function(req,res){
     modelos.Excursion.find({}).populate("guia","chofer").exec(function(err,docs){
         res.render("excursiones/index",{excursiones:docs});
-    }
+    });
 };
 // ### Transacciones de excursiones ###
 

@@ -44,7 +44,8 @@ cloudinary.config({
 });
 
 // Conexión a la BD
-mongoose.connect('mongodb://heroku_45wgrpkj:cs3i3n46i4epjm2hi968q09678@ds111618.mlab.com:11618/heroku_45wgrpkj');//mongodb://localhost:27017/proyectoDB');
+// mongo ds111618.mlab.com:11618/heroku_45wgrpkj -u heroku_45wgrpkj -p cs3i3n46i4epjm2hi968q09678
+//mongoose.connect('mongodb://heroku_45wgrpkj:cs3i3n46i4epjm2hi968q09678@ds111618.mlab.com:11618/heroku_45wgrpkj');//mongodb://localhost:27017/proyectoDB');
 
 // ### Asociados ###
 app.get("/asociados/crear", asociados.getCrear);

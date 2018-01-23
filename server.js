@@ -10,12 +10,17 @@ var methodOverride = require('method-override');
 // Para usar mongo
 var mongoose = require("mongoose");
 
+// Para usar cloudinary
+var cloudinary = require("cloudinary");
+var multer = require('multer');
+
 // Variable que tiene el servidor
 var app = express();
 var port = 8000;
 var asociados = require("./routes/asociados");
 var microbuses = require("./routes/microbuses");
 var excursiones = require("./routes/excursiones");
+var destinos = require("./routes/destinos");
 
 // Configuraciones
 app.set("view engine","pug");
@@ -24,40 +29,35 @@ app.use(express.static(__dirname + "/views"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
+app.use(multer({dest: "./uploads"}).array("fotos"));
 
-// Conexión a la BD
-mongoose.connect('mongodb://localhost:27017/proyectoDB');
+cloudinary.config({
+	cloud_name: "ivanfelipecp",
+	api_key: "828139415984935",
+	api_secret: "DZ9DtVWg6QTTwkU1-g67qJDDgJU"
+});
 
-// ### Transacciones de asociados ###
-// + Crear
-// get
+// ### Asociados ###
 app.get("/asociados/crear", asociados.getCrear);
-// post
 app.post("/asociados/crear",asociados.postCrear);
-// + Modificar
-// get
 app.get("/asociados/modificar/:id",asociados.getModificar);
-// post
 app.post("/asociados/modificar/:id",asociados.postModificar);
-// Eliminar
-// solo el get, ya que se hace directo por parametro
 app.get("/asociados/eliminar/:id",asociados.getEliminar);
-// Get principal
 app.get("/asociados",asociados.getPrincipal);
 
-// ### Transacciones de microbuses ###
-// + Crear
-// get
+// ### Microbuses ###
 app.get("/microbuses/crear", microbuses.getCrear);
-// post
 app.post("/microbuses/crear", microbuses.postCrear);
-
-// Eliminar
-// solo el get, ya que se hace directo por parametro
 app.get("/microbuses/eliminar/:id", microbuses.getEliminar);
-// Get principal
 app.get("/microbuses", microbuses.getPrincipal);
 
-app.listen(port, function(){
-    console.log("*** SERVER RUNNING ON PORT -> " + port);
-});
+
+// ### Destinos ###
+app.get("/destinos", destinos.getPrincipal);
+app.get("/destinos/crear", destinos.getCrear);
+app.post("/destinos/crear", destinos.postCrear);
+app.get("/destinos/eliminar/:id",destinos.getEliminar);
+
+app.listen(port);
+
+console.log("*** SERVER RUNNING ON PORT -> " + port);

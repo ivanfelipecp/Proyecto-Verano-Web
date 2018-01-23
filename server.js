@@ -72,9 +72,6 @@ app.get("/destinos/crear", destinos.getCrear);
 app.post("/destinos/crear", destinos.postCrear);
 app.get("/destinos/eliminar/:id",destinos.getEliminar);
 
-app.listen(port);
-
-console.log("*** SERVER RUNNING ON PORT -> " + port);
 
 // Obtener el home page de los admin
 //app.get("/admin", admin.getPrincipal());
@@ -93,6 +90,10 @@ app.get("/", function (req, res) {
     res.render("destinos-clientes/index");
 });
 
-app.listen(port, function(){
-    console.log("*** SERVER RUNNING ON PORT -> " + port);
-});
+app.listen(port);
+
+console.log("*** SERVER RUNNING ON PORT -> " + port);
+
+
+
+

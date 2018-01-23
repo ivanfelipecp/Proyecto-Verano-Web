@@ -72,6 +72,11 @@ app.get("/clientes", function (req, res) {
     res.render("client");
 });
 
+// Home page de TESTING
+app.get("/", function (req, res) {
+    res.render("destinos-clientes/index");
+});
+
 app.listen(port, function(){
     console.log("*** SERVER RUNNING ON PORT -> " + port);
 });

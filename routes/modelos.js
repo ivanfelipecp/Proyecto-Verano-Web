@@ -32,3 +32,11 @@ exports.Excursion = mongoose.model("excursion",
         comidas: Array
     }
 );
+
+exports.Destinos = mongoose.model("destino",
+    {
+        nombre:String,
+        provincia: String,
+        fotos:Array
+    }
+);

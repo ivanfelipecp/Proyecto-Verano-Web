@@ -13,16 +13,11 @@ var mongoose = require("mongoose");
 // Variable que tiene el servidor
 var app = express();
 var port = 8000;
-<<<<<<< HEAD
-
-var parseo = function(lista) {
-    return lista.split(',');
-};
-=======
 var asociados = require("./routes/asociados");
 var microbuses = require("./routes/microbuses");
 var excursiones = require("./routes/excursiones");
->>>>>>> 3e934b5610940963cd61179d64451c3adabbb754
+var admin = require("./routes/admin");
+var client = require("./routes/client");
 
 // Configuraciones
 app.set("view engine","pug");
@@ -35,32 +30,6 @@ app.use(methodOverride("_method"));
 // Conexión a la BD
 mongoose.connect('mongodb://heroku_45wgrpkj:cs3i3n46i4epjm2hi968q09678@ds111618.mlab.com:11618/heroku_45wgrpkj');//mongodb://localhost:27017/proyectoDB');
 
-<<<<<<< HEAD
-var Asociado = mongoose.model("asociado",
-    {
-        nombre: String,
-        apellido: String,
-        email: String,
-        telefono: Number,
-        puesto: String
-    }
-);
-
-var Microbus = mongoose.model("Microbus",
-    {
-        propietario: mongoose.Schema.Types.ObjectId,
-        estadoMecanico: String,
-        servicios: Array
-    }
-);
-
-
-app.get("/admin", function(req,res){
-    res.render("admin");
-});
-
-=======
->>>>>>> 3e934b5610940963cd61179d64451c3adabbb754
 // ### Transacciones de asociados ###
 // + Crear
 // get
@@ -89,22 +58,19 @@ app.post("/microbuses/crear", microbuses.postCrear);
 // solo el get, ya que se hace directo por parametro
 app.get("/microbuses/eliminar/:id", microbuses.getEliminar);
 // Get principal
-<<<<<<< HEAD
-app.get("/microbuses", function(req,res){
-    Microbus.find({}, function(err, docs){
-        docs.forEach(function(doc) {
-            Asociado.findById(doc.propietario,function(err,d) {
-                docs["chofer"]=d.nombre;
-                console.log(doc);
-            })
-            //docs.chofer="lol";
-        });
-        res.render("microbuses/index",{microbuses:docs});
-    })
-});
-=======
 app.get("/microbuses", microbuses.getPrincipal);
->>>>>>> 3e934b5610940963cd61179d64451c3adabbb754
+
+// Obtener el home page de los admin
+//app.get("/admin", admin.getPrincipal());
+app.get("/admin", function (req, res) {
+    res.render("admin");
+});
+
+// Obtener el home page de los clientes
+//app.get("/clientes", client.getPrincipal());
+app.get("/clientes", function (req, res) {
+    res.render("client");
+});
 
 app.listen(port, function(){
     console.log("*** SERVER RUNNING ON PORT -> " + port);

@@ -51,19 +51,12 @@ app.post("/microbuses/crear", microbuses.postCrear);
 app.get("/microbuses/eliminar/:id", microbuses.getEliminar);
 app.get("/microbuses", microbuses.getPrincipal);
 
-// ### Transacciones de microbuses ###
-// + Get principal
+// ### excursiones ###
+
 app.get("/excursiones", excursiones.getPrincipal);
-// + Crear
-// get
 app.get("/excursiones/crear", excursiones.getCrear);
-// post
 app.post("/excursiones/crear",excursiones.postCrear);
 
-
-app.listen(port, function(){
-    console.log("*** SERVER RUNNING ON PORT -> " + port);
-});
 
 // ### Destinos ###
 app.get("/destinos", destinos.getPrincipal);

@@ -1,6 +1,7 @@
+extends ../layout.pug
 block content
-    div(class="w3-display-middle")
-        h1 Crear Asociado
+    div(class="w3-display-large")        
+        h1 Crear Excursiones
         form(method="post", action="/excursiones/crear/")
             p
                 label Guia
@@ -14,29 +15,38 @@ block content
                       option(value=c._id)= c.nombre
             p
                 label Microbus(es)
-                select(class="w3-select" name='microbuses')
+                select(id="selectMicrobus" class="w3-select" name='microbuses')
                   each c in microbuses
-                      option(value=c._id)= c.nombre
+                    if c.propietario.puesto= "chofer"
+                      option(value=c._id)= c.propietario.nombre
+                     
+                input(type="button", id="agregaMicrobus", class="w3-button w3-blue ", value="Agregar Microbus")
+                input(id="listaMicrobus", name="listaMicrobus", type='hidden')                      
             p
                 label Capacidad Maxima
-                input(name="capacidad", type='text', class="w3-input")
+                input(name="capacidad", type='number', class="w3-input")
             p
                 label Fecha/hora salida
-                input(type='datetime', name='fechaSalida')
+                input(type='datetime-local', name='fechaSalida', class="w3-input")
             p
                 label Fecha/hora llegada
-                input(type='datetime', name='fechaEntrada')
+                input(type='datetime-local', name='fechaEntrada', class="w3-input")
             p
                 label Costos
-                input(type='number', placeholder='Niños')
-                input(type='number', placeholder='Adultos')
-                input(type='number', placeholder='Tercera edad')
+                input(name="niño", type='number', placeholder='Niños', class="w3-input")
+                input(name="adulto", type='number', placeholder='Adultos', class="w3-input")
+                input(name="terceraEdad", type='number', placeholder='Tercera edad', class="w3-input")
             p
                 label Lugar(es) de abordaje
-                input(type='text', class="w3-button w3-red ")
+                input(id="nuevoPunto", type='text', placeholder='Nombre', class="w3-input")
                 input(type="button", id="agregaLugar", class="w3-button w3-blue ", value="Agregar lugar")
-                input(id="lugares" name="lugares", type='hidden')
+                input(id="lugares", name="lugares", type='hidden')
             p
                 label Comida(s)
-                input(type='text', placeholder='Nombre')
-                input(type='number', placeholder='Precio')
+                input(id="nombComida", type='text', placeholder='Nombre', class="w3-input")
+                input(id="precioComida", type='number', placeholder='Precio', class="w3-input")
+                input(type="button", id="agregaComida", class="w3-button w3-blue ", value="Agregar Comida")
+                input(id="comidas", name="comidas", type='hidden')                
+            p                
+                input(type='submit', class="w3-button w3-red ", value="Crear")
+    script(src='/js/main.js', type='text/javascript')        

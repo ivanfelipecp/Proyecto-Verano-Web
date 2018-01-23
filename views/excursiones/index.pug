@@ -1,28 +1,47 @@
 extends ../layout.pug
 block content
-    div(class="w3-margin-top w3-content")
-        h1 microbuses
-        table(class="w3-table-all w3-centered")
+    div(class="w3-margin-top")
+        h1 Excursiones
+        table(class="w3-table-all")
             thead
                 tr(class="w3-red")
-                    th Guia
-                    th Chofer
+                    th Destino
+                    th Guia                    
                     th Microbus(es)
                     th Capacidad Maxima
                     th Fecha/hora salida
                     th Fecha/hora llegada
+                    th Precios
                     th Lugar(es) de abordaje
                     th Comida(s)
+                    th Modificar
+                    th Eliminar
                 tbody
-                    each m in microbuses
+                    each e in excursiones
                         tr
-                            td= m.propietario.nombre
-                            td= m.estadoMecanico
+                            td= e.destino.nombre
+                            td= e.guia.nombre                            
                             td
-                              ul
-                                each s in m.servicios
-                                  li= s
+                                ul
+                                each s in e.microbuses
+                                  li= s.nombre
+                            td= e.cantMaxPersonas        
+                            td= e.fechaHoraSalida
+                            td= e.fechaHoraVuelta
                             td
-                                a(href="/microbuses/modificar/" + m._id) Modificar
+                                ul
+                                    li= "Niño: "+e.costos[0]
+                                    li= "Adulto: "+e.costos[1]
+                                    li= "Tercera edad: "+e.costos[2]
+                            td  
+                                ul
+                                each l in e.lugaresDeAbordaje
+                                    li= l
+                            td  
+                                ul
+                                each co in e.comidas
+                                    li= co
                             td
-                                a(href="/microbuses/eliminar/" + m._id) Eliminar
+                                a(href="/excursiones/modificar/" + e._id) Modificar
+                            td
+                                a(href="/excursiones/eliminar/" + e._id) Eliminar                                                 

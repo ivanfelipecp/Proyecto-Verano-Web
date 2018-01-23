@@ -1,0 +1,25 @@
+extends ../layout.pug
+block content
+    div(class="w3-display-large")        
+        h1 Nueva reservación
+        form(method="post", action="/reservaciones/crear/")
+            p
+                label Excursion
+                select(class="w3-select" name='guia')
+                  each c in guias
+                      option(value=c._id)= c.nombre
+            p
+                label Microbus(es)
+                select(id="tipoTurista" class="w3-select" name='tipoTurista')                                      
+                    option(value="0")= Niño
+                    option(value="1")= Adulto
+                    option(value="2")= Tercera edad                     
+            p
+                label Capacidad Maxima
+                input(name="cantMaxPersonas", type='number', class="w3-input")
+            p
+                label Fecha/hora salida
+                input(type='datetime-local', name='fechaSalida', class="w3-input")                          
+            p                
+                input(type='submit', class="w3-button w3-red ", value="Crear")
+    script(src='/js/main.js', type='text/javascript')        

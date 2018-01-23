@@ -63,3 +63,6 @@ typings/
 .DS_Store
 # idea Files
 .idea/
+*.xml
+*.xml
+.idea/workspace.xml

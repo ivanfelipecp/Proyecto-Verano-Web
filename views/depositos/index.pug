@@ -1,0 +1,25 @@
+extends ../layout.pug
+block content
+    div(class="w3-margin-top w3-content")
+        h1 Depósitos
+        table(class="w3-table-all w3-centered")
+            thead
+                tr(class="w3-red")
+                    th Monto abonado
+                    th Fotos
+                    th Modificar
+                    th Eliminar
+                tbody
+                    each d in depositos
+                        tr
+                            td= d.montoAbonado                            
+                            td
+                                div(class="w3-content w3-display-container")
+                                    each f in d.fotos
+                                        center
+                                            img(class=d.nombre, src=f, style="width:40%")
+                            td
+                                a(href="#" + d._id) Modificar
+                            td
+                                a(href="/depositos/eliminar/" + d._id) Eliminar
+    //script(src='/js/destinos.js', type='text/javascript')

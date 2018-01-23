@@ -41,7 +41,14 @@ $(document).ready(function(){
       microbuses.push(nuevo);
       $("#listaMicrobus").val(microbuses);
     }
-});
+  });
+
+  $("#agregaDestino").click(function() {
+    var nuevoDestino = $("#selectDestino").val();
+    if(nuevoDestino!="") {      
+      $("#destino").val(nuevoDestino);
+    }
+  });
 
   $("#servicios").val(servicios);
   

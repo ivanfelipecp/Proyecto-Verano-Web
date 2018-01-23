@@ -58,3 +58,8 @@ typings/
 # dotenv environment variables file
 .env
 
+
+*.xml
+.DS_Store
+# idea Files
+.idea/

@@ -22,6 +22,9 @@ var microbuses = require("./routes/microbuses");
 var excursiones = require("./routes/excursiones");
 var destinos = require("./routes/destinos");
 
+var admin = require("./routes/admin");
+var client = require("./routes/client");
+
 // Configuraciones
 app.set("view engine","pug");
 app.use(express.static(__dirname + "/public"));
@@ -31,11 +34,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.use(multer({dest: "./uploads"}).array("fotos"));
 
+
 cloudinary.config({
 	cloud_name: "ivanfelipecp",
 	api_key: "828139415984935",
 	api_secret: "DZ9DtVWg6QTTwkU1-g67qJDDgJU"
 });
+
+// Conexión a la BD
+mongoose.connect('mongodb://heroku_45wgrpkj:cs3i3n46i4epjm2hi968q09678@ds111618.mlab.com:11618/heroku_45wgrpkj');//mongodb://localhost:27017/proyectoDB');
 
 // ### Asociados ###
 app.get("/asociados/crear", asociados.getCrear);
@@ -68,3 +75,24 @@ app.get("/destinos/eliminar/:id",destinos.getEliminar);
 app.listen(port);
 
 console.log("*** SERVER RUNNING ON PORT -> " + port);
+
+// Obtener el home page de los admin
+//app.get("/admin", admin.getPrincipal());
+app.get("/admin", function (req, res) {
+    res.render("admin");
+});
+
+// Obtener el home page de los clientes
+//app.get("/clientes", client.getPrincipal());
+app.get("/clientes", function (req, res) {
+    res.render("client");
+});
+
+// Home page de TESTING
+app.get("/", function (req, res) {
+    res.render("destinos-clientes/index");
+});
+
+app.listen(port, function(){
+    console.log("*** SERVER RUNNING ON PORT -> " + port);
+});

@@ -11,7 +11,7 @@ exports.Asociado = mongoose.model("asociado",
     }
 );
 
-exports.Microbus = mongoose.model("Microbus",
+exports.Microbus = mongoose.model("microbus",
     {
         propietario:{"type":mongoose.Schema.Types.ObjectId,ref:"asociado"},
         estadoMecanico: String,
@@ -21,10 +21,9 @@ exports.Microbus = mongoose.model("Microbus",
 
 exports.Excursion = mongoose.model("excursion",
     {
-        guia:{"type":mongoose.Schema.Types.ObjectId,ref:"asociado"},
-        chofer:{"type":mongoose.Schema.Types.ObjectId,ref:"asociado"},
+        guia:{"type":mongoose.Schema.Types.ObjectId,ref:"asociado"},        
         cantMaxPersonas: Number,
-        microbuses: Array,
+        microbuses: [{"type":mongoose.Schema.Types.ObjectId,ref:"microbus"}],
         fechaHoraSalida: Date,
   	    lugaresDeAbordaje: Array,
   	    fechaHoraVuelta: Date,

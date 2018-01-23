@@ -3,9 +3,10 @@ var utils = require("./utils");
 // ### Transacciones de excursiones ###
 // Get principal
 exports.getPrincipal= function(req,res){
-    modelos.Excursion.find({}).populate("guia","chofer").exec(function(err,docs){
+    modelos.Excursion.find({}).populate("guia").populate("microbuses.microbus").exec(function(err,docs){
+        console.log(docs);
         res.render("excursiones/index",{excursiones:docs});
-    }
+    });
 };
 // ### Transacciones de excursiones ###
 
@@ -23,14 +24,28 @@ exports.getCrear= function(req,res){
 
 // post
 exports.postCrear= function(req,res){
-    req.body.comidas = utils.parseo(req.body.comidas);
-    req.body.lugaresDeAbordaje = utils.parseo(req.body.lugares);    
-    req.body.microbuses = utils.parseo(req.body.listaMicrobus);
-    req.body.costos = [req.body.niño,req.body.adulto,req.body.terceraEdad];
-    modelos.Excursion.create(req.body, function(err,doc){
+    var data={};
+    data.guia= req.body.guia;
+    data.chofer= req.body.chofer;
+    data.cantMaxPersonas= req.body.cantMaxPersonas;
+    data.fechaHoraSalida= req.body.fechaSalida;
+    data.fechaHoraVuelta= req.body.fechaEntrada;
+    data.comidas= req.body.comidas = utils.parseo(req.body.comidas);
+    data.lugaresDeAbordaje= req.body.lugaresDeAbordaje = utils.parseo(req.body.lugares);    
+    data.microbuses= req.body.microbuses = utils.parseo(req.body.listaMicrobus);
+    data.costos= req.body.costos = [req.body.niño,req.body.adulto,req.body.terceraEdad];        
+    modelos.Excursion.create(data, function(err,doc){
       if(err){
           console.log(err);
       }
-      res.redirect("/microbuses");
+      res.redirect("/excursiones");
   })
+};
+
+// Eliminar
+// get
+exports.getEliminar= function(req,res){
+    modelos.Excursion.findByIdAndRemove(req.params.id, function(err, doc){
+        res.redirect("/excursiones");
+    });
 };

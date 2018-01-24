@@ -4,7 +4,13 @@ block content
         h1 Nueva reservación
         form(method="post", action="/reservaciones/crear/"+excursion)            
             p
-                label tipoTurista
+                label Nombre
+                input(name="nombre", type='text', class="w3-input")
+            p
+                label Cédula
+                input(name="cedula", type='number', class="w3-input")
+            p
+                label Tipo tusísta
                 select(class="w3-select" name='tipoTurista')
                     option(value="0")= "Niño"
                     option(value="1")= "Adulto"

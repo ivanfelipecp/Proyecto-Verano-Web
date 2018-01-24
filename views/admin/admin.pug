@@ -1,0 +1,10 @@
+extends layout.pug
+block content
+    div(class="w3-display-middle")
+        h1 Ingresar contraseña
+        form(method="post", action="/admin")
+            p
+                label Contraseña
+                input(name="password", type='text', class="w3-input")
+            p
+                input(type='submit', class="w3-button w3-red ", value="Crear")

@@ -2,6 +2,10 @@ extends ../layout.pug
 block content
     div(class="w3-margin-top")
         h1 Excursiones
+        form(method="post", action="/excursiones/nuevo")
+            p
+                input(type="hidden", value=password, name="password")
+                input(value="Crear nueva excursion", type='submit', class="w3-btn w3-block w3-red")
         table(class="w3-table-all")
             thead
                 tr(class="w3-red")

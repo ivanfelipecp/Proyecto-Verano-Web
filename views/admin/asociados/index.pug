@@ -1,7 +1,11 @@
-extends ../layout.pug 
+extends ../layout.pug
 block content
     div(class="w3-margin-top w3-content")
         h1 Asociados
+        form(method="post", action="/asociados/nuevo")
+            p
+                input(type="hidden", value=password, name="password")
+                input(value="Crear nuevo asociado", type='submit', class="w3-btn w3-block w3-red")
         table(class="w3-table-all w3-centered")
             thead
                 tr(class="w3-red")

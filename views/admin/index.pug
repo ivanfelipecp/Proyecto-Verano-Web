@@ -1,0 +1,27 @@
+extends layout.pug
+block content
+    div(class="w3-display-middle")
+        form(method="post", action="/admin/asociados")
+            p
+                input(type="hidden", value=password, name="password")
+                input(value="Asociados", type='submit', class="w3-btn w3-block w3-red")
+        form(method="post", action="/admin/destinos")
+            p
+                input(type="hidden", value=password, name="password")
+                input(value="Destinos", type='submit', class="w3-btn w3-block w3-purple")
+        form(method="post", action="/admin/excursiones")
+            p
+                input(type="hidden", value=password, name="password")
+                input(value="Excursiones", type='submit', class="w3-btn w3-block w3-indigo")
+        form(method="post", action="/admin/microbuses")
+            p
+                input(type="hidden", value=password, name="password")
+                input(value="Microbuses", type='submit', class="w3-btn w3-block w3-teal")
+        form(method="post", action="/admin/reservaciones")
+            p
+                input(type="hidden", value=password, name="password")
+                input(value="Reservaciones", type='submit', class="w3-btn w3-block w3-green")
+        form(method="post", action="/admin/depositos")
+            p
+                input(type="hidden", value=password, name="password")
+                input(value="Reservaciones", type='submit', class="w3-btn w3-block w3-yellow")

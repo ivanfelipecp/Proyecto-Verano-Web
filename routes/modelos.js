@@ -28,7 +28,8 @@ exports.Excursion = mongoose.model("excursion",
         microbuses: [{"type":mongoose.Schema.Types.ObjectId,ref:"microbus"}],
         fechaHoraSalida: Date,
   	    lugaresDeAbordaje: Array,
-  	    fechaHoraVuelta: Date,
+        fechaHoraVuelta: Date,
+        fechaLimitePago: Date,  
         costos: Array,
         comidas: Array
     }
@@ -39,9 +40,10 @@ exports.Reservaciones = mongoose.model("reservacion",
     {
         excursion: {"type":mongoose.Schema.Types.ObjectId,ref:"excursion"},   
         tipoTurista: String,
+        codigo: String,
         monto: Number,
         saldo: Number, 
-        depositos: Array,  
+        depositos: [{"type":mongoose.Schema.Types.ObjectId,ref:"deposito"}],
 	    estado: String,	    
 	    fechaMaxPago: Date
     }

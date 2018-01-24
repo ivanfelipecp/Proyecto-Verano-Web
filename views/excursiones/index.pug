@@ -11,11 +11,13 @@ block content
                     th Capacidad Maxima
                     th Fecha/hora salida
                     th Fecha/hora llegada
+                    th Fecha límite de pago
                     th Precios
                     th Lugar(es) de abordaje
                     th Comida(s)
                     th Modificar
                     th Eliminar
+                    th Reservar
                 tbody
                     each e in excursiones
                         tr
@@ -24,10 +26,11 @@ block content
                             td
                                 ul
                                 each s in e.microbuses
-                                  li= s.nombre
+                                  li= s.propietario.nombre
                             td= e.cantMaxPersonas        
                             td= e.fechaHoraSalida
                             td= e.fechaHoraVuelta
+                            th= e.fechaLimitePago
                             td
                                 ul
                                     li= "Niño: "+e.costos[0]
@@ -44,4 +47,4 @@ block content
                             td
                                 a(href="/excursiones/modificar/" + e._id) Modificar
                             td
-                                a(href="/excursiones/eliminar/" + e._id) Eliminar                                                 
+                                a(href="/excursiones/eliminar/" + e._id) Eliminar                                                                                 

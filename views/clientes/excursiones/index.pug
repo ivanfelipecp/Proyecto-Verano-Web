@@ -2,16 +2,28 @@ extends ../layout.pug
 block content
     div(class="w3-margin-top w3-content")
         #wrap
-            #columns.columns_4
+            #columns.columns_2
 
                 each exc in excursiones
                     figure
-                        img(src='https://assets.metrolatam.com/co/2016/05/05/screen-shot-2016-05-04-at-3-05-11-pm-800x800.jpg')
+                        //img(src='!{exc.destinos.fotos[0]}')
+                        img(src='http://3.bp.blogspot.com/-hv5K7Uta4yI/TZaYygShOXI/AAAAAAAAASw/cLoXmO3KaLY/s1600/DSC_6850.jpg')
                         //figcaption !{exc.cantMaxPersonas}
-                        figcaption Tour a inserteDestinoAqui
-                        //p Fecha de Salida: !{exc.fechaHoraSalida}
-                        //p Fecha de Regreso: !{exc.fechaHoraVuelta}
+                        figcaption Tour a !{exc.destino.nombre}, !{exc.destino.provincia}
+                        p Fecha de Salida: !{exc.fechaHoraSalida}
+                        p Fecha de Regreso: !{exc.fechaHoraVuelta}
                         p Campos disponibles: !{exc.cantMaxPersonas}
+                        p Lugares de abordaje:
+                        ul
+                            each lugar in exc.lugaresDeAbordaje
+                                li !{lugar}
+                        p Guía: !{exc.guia.nombre}
+                        p Servicios incluidos:
+                        ul
+                            each comida in exc.comidas
+                                li !{comida}
+                        p Fecha límite de pago: !{exc.fechaLimitePago}
+
                         span.price
                                         | Niños ₡ !{exc.costos[0]}
                                         br

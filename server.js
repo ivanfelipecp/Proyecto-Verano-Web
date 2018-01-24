@@ -25,11 +25,10 @@ var reservaciones = require("./routes/admin/reservaciones");
 var depositos = require("./routes/admin/depositos");
 var destinosClientes = require("./routes/clientes/destinos");
 var excursionesClientes = require("./routes/clientes/excursiones");
+var reservacionesClientes = require("./routes/clientes/reservaciones");
 var admin = require("./routes/admin/admin");
 var cliente = require("./routes/clientes/client");
 
-//var admin = require("./routes/admin");
-var client = require("./routes/clientes/client");
 
 // Configuraciones
 app.set("view engine","pug");
@@ -103,12 +102,10 @@ app.post("/admin/depositos",admin.postDepositos);
 
 // ### Clientes ###
 app.get("/", cliente.getPrincipal);
-
-// ## Destinos - Clientes ##
 app.get("/destinos", destinosClientes.getPrincipal);
-
-// ## Excursiones - Clientes ##
 app.get("/excursiones", excursionesClientes.getPrincipal);
+app.get("/excursiones/reservar/:id",reservacionesClientes.getReservar);
+
 
 
 

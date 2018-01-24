@@ -2,5 +2,7 @@ var utils = require("../utils");
 var modelos = require("../modelos");
 
 exports.getPrincipal = function(req,res){
-    res.render("clientes/client");
+    modelos.Destinos.find({},function(err,docs){
+        res.render("clientes/client",{destinos:docs});
+    });
 };

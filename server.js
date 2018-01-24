@@ -108,7 +108,7 @@ app.get("/", cliente.getPrincipal);
 app.get("/destinos", destinosClientes.getPrincipal);
 
 // ## Excursiones - Clientes ##
-//app.get("/clientes/excursiones", excursionesClientes.getPrincipal());
+app.get("/excursiones", excursionesClientes.getPrincipal);
 
 
 

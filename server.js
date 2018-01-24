@@ -100,6 +100,12 @@ app.post("/admin/microbuses",admin.postMicrobuses);
 app.post("/admin/reservaciones",admin.postReservaciones);
 app.post("/admin/depositos",admin.postDepositos);
 
+// #### -------- ####
+// #### Clientes ####
+// #### -------- ####
+
+
+
 app.listen(port);
 
 console.log("*** SERVER RUNNING ON PORT -> " + port);

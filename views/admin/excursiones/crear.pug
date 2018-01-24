@@ -1,15 +1,13 @@
 extends ../layout.pug
 block content
-    div(class="w3-display-large")        
+    div(class="w3-display-topmiddle")                
         h1 Crear Excursiones
         form(method="post", action="/excursiones/crear/")
             p   
                 label Destino
                 select(id="selectDestino" class="w3-select" name="selectDestino")
                     each d in destinos
-                        option(value=d._id)= d.nombre+" ("+d.provincia+")"
-                input(type="button", id="agregaDestino", class="w3-button w3-blue ", value="Agregar Destino")
-                input(id="destino", name="destino", type='hidden')              
+                        option(value=d._id)= d.nombre+" ("+d.provincia+")"                              
             p
                 label Guia
                 select(class="w3-select" name='guia')

@@ -1,0 +1,13 @@
+extends ../layout.pug 
+block content
+    div(class="w3-display-middle")
+        h1 Nueva reservación
+        form(method="post", action="/reservaciones/crear/"+excursion)            
+            p
+                label tipoTurista
+                select(class="w3-select" name='tipoTurista')
+                    option(value="0")= "Niño"
+                    option(value="1")= "Adulto"
+                    option(value="2")= "Adulto Mayor"            
+            p
+                input(type='submit', class="w3-button w3-red ", value="Agregar")

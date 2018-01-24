@@ -104,7 +104,8 @@ app.post("/admin/depositos",admin.postDepositos);
 app.get("/", cliente.getPrincipal);
 app.get("/destinos", destinosClientes.getPrincipal);
 app.get("/excursiones", excursionesClientes.getPrincipal);
-app.get("/excursiones/reservar/:id",reservacionesClientes.getReservar);
+app.get("/reservaciones/crear/:id",reservacionesClientes.getReservar);
+app.post("/reservaciones/crear/:id",reservacionesClientes.postReservar);
 
 
 

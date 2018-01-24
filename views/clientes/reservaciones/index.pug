@@ -1,3 +1,38 @@
 extends ../layout.pug
 block content
-    div(class="w3-margin-top w3-content")
+    div(class="w3-margin-top")
+        h1 Excursiones
+        form(method="post", action="/reservaciones/index")
+            p
+                input(type="hidden", value=password, name="password")
+                input(value="Crear nueva excursion", type='submit', class="w3-btn w3-block w3-red")
+        table(class="w3-table-all")
+            thead
+                tr(class="w3-red")
+                    th Destino 
+                    th Codigo de reserva
+                    th turísta                    
+                    th Cédula
+                    th tipo turísta
+                    th estado
+                    th Fecha límite de pago
+                    th Precios
+                    th Pago
+                tbody
+                    each e in reservaciones
+                        tr
+                            td= e.destino.nombre
+                            td= e.codigo
+                            td= e.nombre                           
+                            td= e.cedula
+                            if e.tipoTurista=="0"
+                                td= "Niño"
+                            else if e.tipoTurista=="1"    
+                                td= "Regular"
+                            else
+                                td= "Adulto mayor"    
+                            td= e.estado   
+                            th= e.destino.fechaLimitePago
+                            td= e.destino.costos[e.tipoTurista]
+                            td
+                                a(href="#" + e._id) realizar pago                                                                                

@@ -10,7 +10,7 @@ exports.generateRandomCode = function()
   var min = 65;
   var max = 90;
   while(cont<8){
-    code += String.fromCharCode(Math.random()  (max - min) + min);
+    code += String.fromCharCode(Math.random() + (max - min) + min);
     cont++;
   }
   return code;

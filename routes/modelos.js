@@ -39,9 +39,10 @@ exports.Excursion = mongoose.model("excursion",
 exports.Reservaciones = mongoose.model("reservacion",
     {
         excursion: {"type":mongoose.Schema.Types.ObjectId,ref:"excursion"},   
+        nombre: String,
+        cedula: Number,
         tipoTurista: String,
-        codigo: String,        
-        saldo: Number, 
+        codigo: String, 
         depositos: [{"type":mongoose.Schema.Types.ObjectId,ref:"deposito"}],
 	    estado: String,	    	    
     }

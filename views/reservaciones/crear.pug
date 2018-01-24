@@ -5,21 +5,50 @@ block content
         form(method="post", action="/reservaciones/crear/")
             p
                 label Excursion
-                select(class="w3-select" name='guia')
-                  each c in guias
-                      option(value=c._id)= c.nombre
+                select(id="selectDestinos" class="w3-select" name='selectDestinos')
+                  each c in excursiones
+                      option(value=c.destino._id)= c.destino.nombre
             p
-                label Microbus(es)
+                label Detalle
+                table(class="w3-table-all w3-centered")
+                    thead
+                        tr(class="w3-red")
+                            th Disponibilidad
+                            th Fecha Salida
+                            th Fecha Llegada
+                            th Fecha límite de pago
+                            th Lugares de abordaje
+                            th Costos
+                            th Comidas
+                        tbody
+                            script(type='text/javascript').
+                                var destino= getDestino();                                                                
+                            each d in excursiones
+                                if d.destino.nombre=="Cerro Pelado"
+                                    tr
+                                        td= d.cantMaxPersonas
+                                        td= d.fechaHoraSalida
+                                        td= d.fechaHoraVuelta
+                                        td= d.fechaLimitePago
+                                        td  
+                                            ul
+                                            each a in d.lugaresDeAbordaje
+                                                li= a
+                                        td
+                                            ul
+                                            each ct in d.costos
+                                                li= ct
+                                        td
+                                            ul
+                                            each cd in d.comidas        
+                                                li= cd
+                
+            p
+                label Tipo Turísta
                 select(id="tipoTurista" class="w3-select" name='tipoTurista')                                      
-                    option(value="0")= Niño
-                    option(value="1")= Adulto
-                    option(value="2")= Tercera edad                     
-            p
-                label Capacidad Maxima
-                input(name="cantMaxPersonas", type='number', class="w3-input")
-            p
-                label Fecha/hora salida
-                input(type='datetime-local', name='fechaSalida', class="w3-input")                          
+                    option(value="0")= "Niño"
+                    option(value="1")= "Adulto"
+                    option(value="2")= "Tercera edad"                                                           
             p                
                 input(type='submit', class="w3-button w3-red ", value="Crear")
     script(src='/js/main.js', type='text/javascript')        

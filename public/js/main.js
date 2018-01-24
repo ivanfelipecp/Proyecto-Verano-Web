@@ -1,7 +1,22 @@
+import { Depositos } from "../../routes/modelos";
+
 var servicios = ["Aire acondicionado","Música","WiFi"];
 var puntosAbordaje = [];
 var comidas = [];
 var microbuses = [];
+
+function generateRandomCode()
+{
+  var cont = 0;
+  var code = "";
+  var min = 65;
+  var max = 90;
+  while(cont<8){
+    code += String.fromCharCode(Math.random()  (max - min) + min);
+    cont++;
+  }
+  return code;
+}
 
 $(document).ready(function(){
 

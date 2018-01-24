@@ -3,7 +3,7 @@ var utils = require("./utils");
 // ### Transacciones de excursiones ###
 // Get principal
 exports.getPrincipal= function(req,res){
-    modelos.Reservaciones.find({}).populate("excursion").exec(function(err,docs){
+    modelos.Reservaciones.find({}).populate("excursion").populate({"path":'depositos'}).exec(function(err,docs){
         console.log(docs);
         res.render("reservaciones/index",{reservaciones:docs});
     });
@@ -13,8 +13,9 @@ exports.getPrincipal= function(req,res){
 // + Crear
 // get
 exports.getCrear= function(req,res){    
-    modelos.Excursion.find({}).populate("guia").exec(function(err,docs) {
-        res.render("reservaciones/crear",{guia:docs});
+    modelos.Excursion.find({}).populate("destino").exec(function(err,docs) {
+        //res.json({reservaciones:docs});
+        res.render("reservaciones/crear",{excursiones:docs});
     })
 };
 

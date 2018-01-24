@@ -3,6 +3,7 @@ var utils = require("./utils");
 // ### Transacciones de excursiones ###
 // Get principal
 exports.getPrincipal= function(req,res){
+    modelos.Excursion.find({}).populate("guia").populate("destino").populate("microbuses microbuses.propietario").exec(function(err,docs){
     /*modelos.Excursion.find({}).populate("guia").populate("destino").populate("microbuses.microbus").exec(function(err,docs){
         console.log(docs);
         res.render("excursiones/index",{excursiones:docs});

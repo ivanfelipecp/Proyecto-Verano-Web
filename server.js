@@ -26,6 +26,7 @@ var depositos = require("./routes/admin/depositos");
 var destinosClientes = require("./routes/clientes/destinos");
 var excursionesClientes = require("./routes/clientes/excursiones");
 var admin = require("./routes/admin/admin");
+var cliente = require("./routes/clientes/client");
 
 //var admin = require("./routes/admin");
 var client = require("./routes/clientes/client");
@@ -99,6 +100,18 @@ app.post("/admin/excursiones",admin.postExcursiones);
 app.post("/admin/microbuses",admin.postMicrobuses);
 app.post("/admin/reservaciones",admin.postReservaciones);
 app.post("/admin/depositos",admin.postDepositos);
+
+// ### Clientes ###
+app.get("/", cliente.getPrincipal);
+
+// ## Destinos - Clientes ##
+app.get("/destinos", destinosClientes.getPrincipal);
+
+// ## Excursiones - Clientes ##
+app.get("/excursiones", excursionesClientes.getPrincipal);
+
+
+
 
 app.listen(port);
 

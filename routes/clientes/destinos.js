@@ -1,7 +1,7 @@
-var modelos = require("./modelos");
+var modelos = require("../modelos");
 
 exports.getPrincipal = function(req,res){
     modelos.Destinos.find({},function(err,docs){
-        res.render("destinos-clientes/index",{destinos:docs});
+        res.render("clientes/destinos/index",{destinos:docs});
     });
 };

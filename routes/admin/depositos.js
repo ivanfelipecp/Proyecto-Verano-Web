@@ -1,15 +1,21 @@
-var modelos = require("./modelos");
-var utils = require("./utils");
+var modelos = require("../modelos");
+var utils = require("../utils");
 var cloudinary = require("cloudinary");
 
 exports.getPrincipal = function(req,res){
     modelos.Depositos.find({},function(err,docs){
-        res.render("depositos/index",{depositos:docs});
+        res.render("admin/depositos/index",{depositos:docs});
     });
 };
 
 exports.getCrear = function(req,res){
-    res.render("depositos/crear");
+    if(req.body.password == utils.password){
+        res.render("admin/depositos/crear");
+    }
+    else{
+        res.redirect("/admin");
+    }
+    
 };
 
 exports.postCrear = function(req, res){
@@ -26,19 +32,25 @@ exports.postCrear = function(req, res){
                         if(err){
                             console.log(err);
                         }
-                        res.redirect("/depositos");
+                        //res.redirect("/depositos");
+                        modelos.Depositos.find({},function(err,docs){
+                            res.render("admin/depositos/index",{depositos:docs,password:req.body.password});
+                        });
                     });
                 }
             });
         }
     }
     else{
-        res.redirect("/depositos");
+        res.redirect("/admin");
     }
 };
 
 exports.getEliminar = function(req,res){
     modelos.Depositos.findByIdAndRemove(req.params.id, function(err, doc){
-        res.redirect("/depositos");
+        //res.redirect("/depositos");
+        modelos.Depositos.find({},function(err,docs){
+            res.render("admin/depositos/index",{depositos:docs,password:req.body.password});
+        });
     });
 };

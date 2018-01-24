@@ -1,15 +1,21 @@
-var modelos = require("./modelos");
-var utils = require("./utils");
+var modelos = require("../modelos");
+var utils = require("../utils");
 var cloudinary = require("cloudinary");
 
 exports.getPrincipal = function(req,res){
     modelos.Destinos.find({},function(err,docs){
-        res.render("destinos/index",{destinos:docs});
+        res.render("admin/destinos/index",{destinos:docs});
     });
 };
 
 exports.getCrear = function(req,res){
-    res.render("destinos/crear");
+    if(req.body.password == utils.password){
+        res.render("admin/destinos/crear");
+    }
+    else{
+        res.render("/admin");
+    }
+    
 };
 
 exports.postCrear = function(req, res){
@@ -26,19 +32,24 @@ exports.postCrear = function(req, res){
                         if(err){
                             console.log(err);
                         }
-                        res.redirect("/destinos");
+                        modelos.Destinos.find({},function(err,docs){
+                            res.render("admin/destinos/index",{destinos:docs,password:req.body.password});
+                        });
                     });
                 }
             });
         }
     }
     else{
-        res.redirect("/destinos");
+        res.redirect("/admin");
     }
 };
 
 exports.getEliminar = function(req,res){
     modelos.Destinos.findByIdAndRemove(req.params.id, function(err, doc){
-        res.redirect("/destinos");
+        //res.redirect("/destinos");
+        modelos.Destinos.find({},function(err,docs){
+            res.render("admin/destinos/index",{destinos:docs,password:req.body.password});
+        });
     });
 };

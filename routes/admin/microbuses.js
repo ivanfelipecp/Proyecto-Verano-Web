@@ -1,13 +1,15 @@
-var modelos = require("./modelos");
-var utils = require("./utils");
+var modelos = require("../modelos");
+var utils = require("../utils");
 // ### Transacciones de microbuses ###
 
 // + Crear
 // get
 exports.getCrear= function(req,res){
-    modelos.Asociado.find({puesto:"chofer"},function(err,docs) {
-        res.render("microbuses/crear",{choferes:docs});
-    })
+    if(req.body.password == utils.password){
+        modelos.Asociado.find({puesto:"chofer"},function(err,docs) {
+            res.render("admin/microbuses/crear",{choferes:docs,password:req.body.password});
+        })
+    }
 };
 
 // post
@@ -17,7 +19,10 @@ exports.postCrear= function(req,res){
       if(err){
           console.log(err);
       }
-      res.redirect("/microbuses");
+      //res.redirect("/microbuses");
+      modelos.Microbus.find({}).populate("propietario").exec(function(err,docs) {
+        res.render("admin/microbuses/index",{microbuses:docs,password:req.body.password});
+    });
   })
 };
 /*
@@ -45,13 +50,16 @@ app.post("/asociados/modificar/:id", function(req,res){
 // solo el get, ya que se hace directo por parametro
 exports.getEliminar= function(req,res){
     modelos.Microbus.findByIdAndRemove(req.params.id, function(err, doc){
-        res.redirect("/microbuses");
+        //res.redirect("/microbuses");
+        modelos.Microbus.find({}).populate("propietario").exec(function(err,docs) {
+            res.render("admin/microbuses/index",{microbuses:docs});
+        });
     });
 };
 
 // Get principal
 exports.getPrincipal= function(req,res){
     modelos.Microbus.find({}).populate("propietario").exec(function(err,docs) {
-        res.render("microbuses/index",{microbuses:docs});
+        res.render("admin/microbuses/index",{microbuses:docs});
     });
 };

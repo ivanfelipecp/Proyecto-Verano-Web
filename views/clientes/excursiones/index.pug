@@ -1,7 +1,26 @@
 extends ../layout.pug
 block content
     div(class="w3-margin-top w3-content")
-        
+        #wrap
+            #columns.columns_4
+
+                each exc in excursiones
+                    figure
+                        img(src='https://assets.metrolatam.com/co/2016/05/05/screen-shot-2016-05-04-at-3-05-11-pm-800x800.jpg')
+                        //figcaption !{exc.cantMaxPersonas}
+                        figcaption Tour a inserteDestinoAqui
+                        //p Fecha de Salida: !{exc.fechaHoraSalida}
+                        //p Fecha de Regreso: !{exc.fechaHoraVuelta}
+                        p Campos disponibles: !{exc.cantMaxPersonas}
+                        span.price
+                                        | Niños ₡ !{exc.costos[0]}
+                                        br
+                                        | Regular ₡ !{exc.costos[1]}
+                                        br
+                                        | Adulto mayor ₡ !{exc.costos[2]}
+                        a.button(href='#') Reservar
+
+
 
 
 

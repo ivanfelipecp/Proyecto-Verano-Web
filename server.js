@@ -23,6 +23,8 @@ var excursiones = require("./routes/excursiones");
 var destinos = require("./routes/destinos");
 var reservaciones = require("./routes/reservaciones");
 var depositos = require("./routes/depositos");
+var destinosClientes = require("./routes/destinos-clientes");
+var excursionesClientes = require("./routes/excursiones-clientes");
 
 var admin = require("./routes/admin");
 var client = require("./routes/client");
@@ -87,6 +89,11 @@ app.get("/depositos/crear", depositos.getCrear);
 app.post("/depositos/crear", depositos.postCrear);
 app.get("/depositos/eliminar/:id",depositos.getEliminar);
 
+// ### Destinos-Clientes ###
+app.get("/clientes/destinos", destinosClientes.getPrincipal);
+
+// ### Excursiones-Clientes ###
+app.get("/clientes/excursiones", excursionesClientes.getPrincipal);
 
 // Obtener el home page de los admin
 //app.get("/admin", admin.getPrincipal());

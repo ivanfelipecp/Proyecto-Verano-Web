@@ -23,6 +23,8 @@ var excursiones = require("./routes/excursiones");
 var destinos = require("./routes/destinos");
 var reservaciones = require("./routes/reservaciones");
 var depositos = require("./routes/depositos");
+var destinosClientes = require("./routes/destinos-clientes");
+var excursionesClientes = require("./routes/excursiones-clientes");
 
 var admin = require("./routes/admin");
 var client = require("./routes/client");
@@ -67,6 +69,7 @@ app.get("/excursiones", excursiones.getPrincipal);
 app.get("/excursiones/crear", excursiones.getCrear);
 app.post("/excursiones/crear",excursiones.postCrear);
 app.get("/excursiones/eliminar/:id", excursiones.getEliminar);
+app.get("/excursiones/reservar/:id", excursiones.getReserva);
 
 // ### reservaciones ###
 app.get("/reservaciones", reservaciones.getPrincipal);
@@ -86,6 +89,11 @@ app.get("/depositos/crear", depositos.getCrear);
 app.post("/depositos/crear", depositos.postCrear);
 app.get("/depositos/eliminar/:id",depositos.getEliminar);
 
+// ### Destinos-Clientes ###
+app.get("/clientes/destinos", destinosClientes.getPrincipal);
+
+// ### Excursiones-Clientes ###
+app.get("/clientes/excursiones", excursionesClientes.getPrincipal);
 
 // Obtener el home page de los admin
 //app.get("/admin", admin.getPrincipal());
@@ -107,7 +115,3 @@ app.get("/", function (req, res) {
 app.listen(port);
 
 console.log("*** SERVER RUNNING ON PORT -> " + port);
-
-
-
-

@@ -18,8 +18,7 @@ block content
             p
                 label Microbus(es)
                 select(id="selectMicrobus" class="w3-select" name='microbuses')
-                  each c in microbuses
-                    if c.propietario.puesto= "chofer"
+                  each c in microbuses                    
                       option(value=c._id)= c.propietario.nombre                     
                 input(type="button", id="agregaMicrobus", class="w3-button w3-blue ", value="Agregar Microbus")
                 input(id="listaMicrobus", name="listaMicrobus", type='hidden')                      
@@ -32,6 +31,9 @@ block content
             p
                 label Fecha/hora llegada
                 input(type='datetime-local', name='fechaEntrada', class="w3-input")
+            p
+                label Fecha límite de pago
+                input(type='datetime-local', name='fechaLimitePago', class="w3-input")                
             p
                 label Costos
                 input(name="niño", type='number', placeholder='Niños', class="w3-input")

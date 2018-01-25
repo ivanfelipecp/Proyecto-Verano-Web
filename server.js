@@ -28,6 +28,7 @@ var excursionesClientes = require("./routes/clientes/excursiones");
 var reservacionesClientes = require("./routes/clientes/reservaciones");
 var admin = require("./routes/admin/admin");
 var cliente = require("./routes/clientes/client");
+var tramites = require("./routes/clientes/tramites");
 
 
 // Configuraciones
@@ -107,8 +108,9 @@ app.get("/excursiones", excursionesClientes.getPrincipal);
 app.get("/reservaciones/crear/:id",reservacionesClientes.getReservar);
 app.post("/reservaciones/crear/:id",reservacionesClientes.postReservar);
 
-
-
+app.get("/consultar",tramites.getConsultar);
+app.post("/tramites/consultar",tramites.postConsultar);
+app.get("/tramites/pago/:id",tramites.getPago);
 
 
 app.listen(port);

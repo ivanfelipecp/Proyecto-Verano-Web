@@ -1,23 +1,19 @@
 extends ../layout.pug
 block content
     div(class="w3-margin-top")
-        h1 Re                    
+        h1 Reservaciones                    
         table(class="w3-table-all")
             thead
-                tr(class="w3-red")
-                    th Destino 
+                tr(class="w3-red")                    
                     th Codigo de reserva
                     th turísta                    
                     th Cédula
                     th tipo turísta
                     th estado
-                    th Fecha límite de pago
-                    th Precios
                     th Pago
                 tbody
                     each e in reservaciones
                         tr
-                            td= e.destino.nombre
                             td= e.codigo
                             td= e.nombre                           
                             td= e.cedula
@@ -27,6 +23,6 @@ block content
                                 td= "Regular"
                             else
                                 td= "Adulto mayor"    
-                            td= e.estado   
-                            th= e.destino.fechaLimitePago
-                            td= e.destino.costos[e.tipoTurista]                                                                                                        
+                            td= e.estado  
+                            td
+                                a(href="/tramites/pago/"+e._id) Pagar

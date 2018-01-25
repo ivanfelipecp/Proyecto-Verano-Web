@@ -27,10 +27,7 @@ exports.postReservar = function(req,res){
                         console.log("Something wrong when updating data!");
                     }
                     //res.json({reservacion:doc});
-                    modelos.Reservaciones.find({}).populate({"path":'excursion',"populate":{"path":"destino"}}).populate({"path":'depositos'}).exec(function(err,docs){
-                        //res.render("clientes/reservaciones/index",{reservaciones:docs});
-                        res.json({reservaciones:docs});
-                    });
+                    res.redirect("/");
                 });    
             });                     
         }        

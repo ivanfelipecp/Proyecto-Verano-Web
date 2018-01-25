@@ -1,0 +1,10 @@
+extends ../layout.pug
+block content
+    div(class="w3-display-middle")
+        h1 Ingresar cédula
+        form(method="post", action="/tramites/consultar")
+            p
+                label Cédula
+                input(name="cedula", type='text', class="w3-input")
+            p
+                input(type='submit', class="w3-button w3-red ", value="Consultar")
